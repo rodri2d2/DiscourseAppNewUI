@@ -1,8 +1,8 @@
-# DiscourseAppNewUI
+
+# KeepCoding -  Práctica de Interfaces de usuario / User interface design practical exercise
 ![Swift Version](https://img.shields.io/badge/Swift-5.3-F16D39.svg?style=flat)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-## KeepCoding -  Práctica de Interfaces de usuario / User interface design practical exercise
 
 ## Objetivos principales
 
