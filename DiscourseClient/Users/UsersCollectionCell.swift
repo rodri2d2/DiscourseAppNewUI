@@ -41,6 +41,7 @@ class UsersCollectionCell: UICollectionViewCell {
         let view = UILabel()
         view.numberOfLines = 0
         view.font = .systemFont(ofSize: 15, weight: .regular)
+        view.lineBreakMode = .byWordWrapping
         view.textAlignment = .center
         view.alpha = 0
         return view
@@ -54,6 +55,12 @@ class UsersCollectionCell: UICollectionViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    override func prepareForReuse() {
+        self.imageView.image = nil
+        self.nameLabel.text = nil
     }
     
     
