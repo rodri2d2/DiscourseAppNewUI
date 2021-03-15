@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B43362225FF4A3A00E34F1B /* UsersCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B43362125FF4A3A00E34F1B /* UsersCollectionCell.swift */; };
+		5B43362525FF4D8600E34F1B /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B43362425FF4D8600E34F1B /* UIView+Ext.swift */; };
+		5BDD323625FF60C700F8D9AA /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDD323525FF60C700F8D9AA /* UIColor+Ext.swift */; };
 		62015CB723EF04C200673EBB /* TopicCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62015CB623EF04C200673EBB /* TopicCellViewModel.swift */; };
 		62015CBA23EF084C00673EBB /* TopicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62015CB823EF084C00673EBB /* TopicCell.swift */; };
 		62015CBB23EF084C00673EBB /* TopicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62015CB923EF084C00673EBB /* TopicCell.xib */; };
@@ -37,8 +40,6 @@
 		626F76E7242FAA57006610C8 /* UsersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626F76E6242FAA57006610C8 /* UsersViewModel.swift */; };
 		626F76EB242FABA0006610C8 /* UsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626F76EA242FABA0006610C8 /* UsersViewController.swift */; };
 		626F76ED242FAC86006610C8 /* UserCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626F76EC242FAC86006610C8 /* UserCellViewModel.swift */; };
-		626F76F0242FACBC006610C8 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626F76EE242FACBC006610C8 /* UserCell.swift */; };
-		626F76F1242FACBC006610C8 /* UserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 626F76EF242FACBC006610C8 /* UserCell.xib */; };
 		626F76F3242FACE4006610C8 /* UsersDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626F76F2242FACE4006610C8 /* UsersDataManager.swift */; };
 		626F76F5242FAD25006610C8 /* UsersResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626F76F4242FAD25006610C8 /* UsersResponse.swift */; };
 		626F76F7242FAD34006610C8 /* UsersRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626F76F6242FAD34006610C8 /* UsersRequest.swift */; };
@@ -71,6 +72,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5B43362125FF4A3A00E34F1B /* UsersCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersCollectionCell.swift; sourceTree = "<group>"; };
+		5B43362425FF4D8600E34F1B /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
+		5BDD323525FF60C700F8D9AA /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
 		62015CB623EF04C200673EBB /* TopicCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicCellViewModel.swift; sourceTree = "<group>"; };
 		62015CB823EF084C00673EBB /* TopicCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicCell.swift; sourceTree = "<group>"; };
 		62015CB923EF084C00673EBB /* TopicCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TopicCell.xib; sourceTree = "<group>"; };
@@ -101,8 +105,6 @@
 		626F76E6242FAA57006610C8 /* UsersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewModel.swift; sourceTree = "<group>"; };
 		626F76EA242FABA0006610C8 /* UsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewController.swift; sourceTree = "<group>"; };
 		626F76EC242FAC86006610C8 /* UserCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCellViewModel.swift; sourceTree = "<group>"; };
-		626F76EE242FACBC006610C8 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
-		626F76EF242FACBC006610C8 /* UserCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserCell.xib; sourceTree = "<group>"; };
 		626F76F2242FACE4006610C8 /* UsersDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersDataManager.swift; sourceTree = "<group>"; };
 		626F76F4242FAD25006610C8 /* UsersResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersResponse.swift; sourceTree = "<group>"; };
 		626F76F6242FAD34006610C8 /* UsersRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersRequest.swift; sourceTree = "<group>"; };
@@ -161,6 +163,8 @@
 			isa = PBXGroup;
 			children = (
 				62015CCA23EF19F500673EBB /* UIViewController+Extensions.swift */,
+				5B43362425FF4D8600E34F1B /* UIView+Ext.swift */,
+				5BDD323525FF60C700F8D9AA /* UIColor+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -195,8 +199,7 @@
 				626F76EA242FABA0006610C8 /* UsersViewController.swift */,
 				626F76F2242FACE4006610C8 /* UsersDataManager.swift */,
 				626F76EC242FAC86006610C8 /* UserCellViewModel.swift */,
-				626F76EE242FACBC006610C8 /* UserCell.swift */,
-				626F76EF242FACBC006610C8 /* UserCell.xib */,
+				5B43362125FF4A3A00E34F1B /* UsersCollectionCell.swift */,
 			);
 			path = Users;
 			sourceTree = "<group>";
@@ -406,7 +409,6 @@
 				627DC5B223E5F581006D8615 /* Assets.xcassets in Resources */,
 				62015CBB23EF084C00673EBB /* TopicCell.xib in Resources */,
 				626F76DF242FA491006610C8 /* CategoryCell.xib in Resources */,
-				626F76F1242FACBC006610C8 /* UserCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -440,11 +442,12 @@
 				627DC5C523E5FEFD006D8615 /* TopicsViewController.swift in Sources */,
 				627DC5D323E605E5006D8615 /* DiscourseClientRemoteDataManagerImpl.swift in Sources */,
 				62015CBA23EF084C00673EBB /* TopicCell.swift in Sources */,
+				5B43362225FF4A3A00E34F1B /* UsersCollectionCell.swift in Sources */,
 				62015CCB23EF19F500673EBB /* UIViewController+Extensions.swift in Sources */,
 				62015CD823EF26C900673EBB /* AddTopicCoordinator.swift in Sources */,
 				62015CD423EF21A900673EBB /* AddNewTopicResponse.swift in Sources */,
 				62015CC623EF161E00673EBB /* SingleTopicRequest.swift in Sources */,
-				626F76F0242FACBC006610C8 /* UserCell.swift in Sources */,
+				5BDD323625FF60C700F8D9AA /* UIColor+Ext.swift in Sources */,
 				62015CCE23EF1F5200673EBB /* AddTopicViewModel.swift in Sources */,
 				62015CDF23EF30E600673EBB /* CategoriesCoordinator.swift in Sources */,
 				62015CD223EF205100673EBB /* CreateTopicRequest.swift in Sources */,
@@ -460,6 +463,7 @@
 				62015CD623EF21F600673EBB /* AddTopicDataManager.swift in Sources */,
 				627DC5D923E60727006D8615 /* APIRequest.swift in Sources */,
 				626F76FB242FB7E3006610C8 /* UserRequest.swift in Sources */,
+				5B43362525FF4D8600E34F1B /* UIView+Ext.swift in Sources */,
 				62015CD023EF1F6800673EBB /* AddTopicViewController.swift in Sources */,
 				626F76E3242FA65A006610C8 /* CategoriesResponse.swift in Sources */,
 				626F76FD242FB834006610C8 /* UserResponse.swift in Sources */,

@@ -10,83 +10,110 @@ import UIKit
 
 class UsersViewController: UIViewController {
     let viewModel: UsersViewModel
-
-    lazy var tableView: UITableView = {
-        let table = UITableView(frame: .zero, style: .grouped)
-        table.translatesAutoresizingMaskIntoConstraints = false
-        table.dataSource = self
-        table.delegate = self
-        table.register(UINib(nibName: "UserCell", bundle: nil), forCellReuseIdentifier: "UserCell")
-        table.estimatedRowHeight = 100
-        table.rowHeight = UITableView.automaticDimension
-        return table
+    
+    lazy var collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        view.delegate   = self
+        view.dataSource = self
+        view.register(UsersCollectionCell.self, forCellWithReuseIdentifier: UsersCollectionCell.description())
+        view.backgroundColor = .white
+        return view
+        
     }()
-
+    
+    
     init(viewModel: UsersViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     override func loadView() {
         view = UIView()
-        view.backgroundColor = .white
-
-        view.addSubview(tableView)
-        NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.topAnchor),
-            tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
-            tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
+        view.backgroundColor = UIColor.discourseWhite
+        view.addSubview(collectionView)
+        collectionView.pinWintSafety(to: view)
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.viewWasLoaded()
+        setupNavigationBar()
     }
-
+    
     fileprivate func showErrorFetchingUsers() {
         showAlert("Error fetching users\nPlease try again later")
     }
+    
+    fileprivate func setupNavigationBar(){
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+        self.navigationController?.navigationBar.isTranslucent      = true
+        self.navigationController?.navigationBar.isOpaque           = true
+        self.navigationController?.navigationBar.backgroundColor    = UIColor.discourseWhite
+        
+        //Navigation Bar Shadow related
+        self.navigationController?.navigationBar.layer.shadowRadius  = 1
+        self.navigationController?.navigationBar.layer.shadowOffset  = CGSize(width: 0, height: 2)
+        self.navigationController?.navigationBar.layer.shadowOpacity = 0.3
+        self.navigationController?.navigationBar.layer.shadowColor   = UIColor.discourseGray.cgColor
+    }
+    
 }
 
-extension UsersViewController: UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return viewModel.numberOfSections()
-    }
 
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.numberOfRows(in: section)
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "UserCell", for: indexPath) as? UserCell,
-            let cellViewModel = viewModel.viewModel(at: indexPath) {
-            cell.viewModel = cellViewModel
-            return cell
-        }
-
-        fatalError()
-    }
-}
-
-extension UsersViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        viewModel.didSelectRow(at: indexPath)
-    }
-}
-
+// MARK: - Extention for UsersViewModelViewDelegate
 extension UsersViewController: UsersViewModelViewDelegate {
     func usersWereFetched() {
-        tableView.reloadData()
+        collectionView.reloadData()
     }
-
+    
     func errorFetchingUsers() {
         showErrorFetchingUsers()
+    }
+}
+
+
+// MARK: - Extension for UICollectionViewDataSource
+extension UsersViewController: UICollectionViewDataSource{
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.viewModel.numberOfRows(in: section)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: UsersCollectionCell.description(), for: indexPath) as! UsersCollectionCell
+        let cellViewModel = viewModel.viewModel(at: indexPath)
+        cell.viewModel = cellViewModel
+        return cell
+    }
+}
+
+// MARK: - Extention for UICollectionViewDelegateFlowLayout
+extension UsersViewController: UICollectionViewDelegateFlowLayout{
+    
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        viewModel.didSelectRow(at: indexPath)
+    }
+    
+    //Collection cell size
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 94, height: 124)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: CGFloat(24), left: CGFloat(26), bottom: 0, right: CGFloat(26))
+    }
+    
+    //Collection cell spaces between one cell and another
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return CGFloat(34.5)
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return CGFloat(18)
     }
 }
