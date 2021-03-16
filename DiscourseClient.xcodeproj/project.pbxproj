@@ -7,11 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B22A25425FF752800CF5205 /* TopicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B22A25325FF752800CF5205 /* TopicCell.swift */; };
+		5B22A25825FFAB4500CF5205 /* TopicCommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B22A25725FFAB4500CF5205 /* TopicCommentsView.swift */; };
 		5B43362225FF4A3A00E34F1B /* UsersCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B43362125FF4A3A00E34F1B /* UsersCollectionCell.swift */; };
 		5B43362525FF4D8600E34F1B /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B43362425FF4D8600E34F1B /* UIView+Ext.swift */; };
 		5BDD323625FF60C700F8D9AA /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDD323525FF60C700F8D9AA /* UIColor+Ext.swift */; };
+		5BE144A325FFF11A009E05D8 /* TopicCommentsViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE144A225FFF11A009E05D8 /* TopicCommentsViewDelegate.swift */; };
 		62015CB723EF04C200673EBB /* TopicCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62015CB623EF04C200673EBB /* TopicCellViewModel.swift */; };
-		62015CBA23EF084C00673EBB /* TopicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62015CB823EF084C00673EBB /* TopicCell.swift */; };
+		62015CBA23EF084C00673EBB /* OldTopicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62015CB823EF084C00673EBB /* OldTopicCell.swift */; };
 		62015CBB23EF084C00673EBB /* TopicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62015CB923EF084C00673EBB /* TopicCell.xib */; };
 		62015CBD23EF0C6700673EBB /* TopicsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62015CBC23EF0C6700673EBB /* TopicsCoordinator.swift */; };
 		62015CC023EF0F8100673EBB /* TopicDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62015CBF23EF0F8100673EBB /* TopicDetailViewModel.swift */; };
@@ -72,11 +75,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5B22A25325FF752800CF5205 /* TopicCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicCell.swift; sourceTree = "<group>"; };
+		5B22A25725FFAB4500CF5205 /* TopicCommentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicCommentsView.swift; sourceTree = "<group>"; };
 		5B43362125FF4A3A00E34F1B /* UsersCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersCollectionCell.swift; sourceTree = "<group>"; };
 		5B43362425FF4D8600E34F1B /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		5BDD323525FF60C700F8D9AA /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
+		5BE144A225FFF11A009E05D8 /* TopicCommentsViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicCommentsViewDelegate.swift; sourceTree = "<group>"; };
 		62015CB623EF04C200673EBB /* TopicCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicCellViewModel.swift; sourceTree = "<group>"; };
-		62015CB823EF084C00673EBB /* TopicCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicCell.swift; sourceTree = "<group>"; };
+		62015CB823EF084C00673EBB /* OldTopicCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldTopicCell.swift; sourceTree = "<group>"; };
 		62015CB923EF084C00673EBB /* TopicCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TopicCell.xib; sourceTree = "<group>"; };
 		62015CBC23EF0C6700673EBB /* TopicsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsCoordinator.swift; sourceTree = "<group>"; };
 		62015CBF23EF0F8100673EBB /* TopicDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicDetailViewModel.swift; sourceTree = "<group>"; };
@@ -149,6 +155,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5B22A25A25FFE28A00CF5205 /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				5B22A25725FFAB4500CF5205 /* TopicCommentsView.swift */,
+				5BE144A225FFF11A009E05D8 /* TopicCommentsViewDelegate.swift */,
+			);
+			path = CustomViews;
+			sourceTree = "<group>";
+		};
 		62015CBE23EF0F6C00673EBB /* TopicDetail */ = {
 			isa = PBXGroup;
 			children = (
@@ -272,8 +287,10 @@
 				627DC5C423E5FEFD006D8615 /* TopicsViewController.swift */,
 				627DC5C723E60384006D8615 /* TopicsDataManager.swift */,
 				62015CB623EF04C200673EBB /* TopicCellViewModel.swift */,
-				62015CB823EF084C00673EBB /* TopicCell.swift */,
+				62015CB823EF084C00673EBB /* OldTopicCell.swift */,
 				62015CB923EF084C00673EBB /* TopicCell.xib */,
+				5B22A25325FF752800CF5205 /* TopicCell.swift */,
+				5B22A25A25FFE28A00CF5205 /* CustomViews */,
 			);
 			path = Topics;
 			sourceTree = "<group>";
@@ -433,6 +450,7 @@
 				62D577B5242FC6EC00268ADC /* UpdateUserNameRequest.swift in Sources */,
 				626F7701242FB99D006610C8 /* UserViewModel.swift in Sources */,
 				62015CC823EF162D00673EBB /* SingleTopicResponse.swift in Sources */,
+				5B22A25825FFAB4500CF5205 /* TopicCommentsView.swift in Sources */,
 				62015CC423EF14FC00673EBB /* TopicDetailDataManager.swift in Sources */,
 				62015CDB23EF301300673EBB /* CategoriesViewModel.swift in Sources */,
 				62015CBD23EF0C6700673EBB /* TopicsCoordinator.swift in Sources */,
@@ -441,7 +459,7 @@
 				626F76EB242FABA0006610C8 /* UsersViewController.swift in Sources */,
 				627DC5C523E5FEFD006D8615 /* TopicsViewController.swift in Sources */,
 				627DC5D323E605E5006D8615 /* DiscourseClientRemoteDataManagerImpl.swift in Sources */,
-				62015CBA23EF084C00673EBB /* TopicCell.swift in Sources */,
+				62015CBA23EF084C00673EBB /* OldTopicCell.swift in Sources */,
 				5B43362225FF4A3A00E34F1B /* UsersCollectionCell.swift in Sources */,
 				62015CCB23EF19F500673EBB /* UIViewController+Extensions.swift in Sources */,
 				62015CD823EF26C900673EBB /* AddTopicCoordinator.swift in Sources */,
@@ -460,10 +478,12 @@
 				626F76D3242F6F08006610C8 /* DeleteTopicRequest.swift in Sources */,
 				626F76D5242F6FDE006610C8 /* DeleteTopicResponse.swift in Sources */,
 				62A697A823E89E6700CCEA3E /* DiscourseClientLocalDataManagerImpl.swift in Sources */,
+				5B22A25425FF752800CF5205 /* TopicCell.swift in Sources */,
 				62015CD623EF21F600673EBB /* AddTopicDataManager.swift in Sources */,
 				627DC5D923E60727006D8615 /* APIRequest.swift in Sources */,
 				626F76FB242FB7E3006610C8 /* UserRequest.swift in Sources */,
 				5B43362525FF4D8600E34F1B /* UIView+Ext.swift in Sources */,
+				5BE144A325FFF11A009E05D8 /* TopicCommentsViewDelegate.swift in Sources */,
 				62015CD023EF1F6800673EBB /* AddTopicViewController.swift in Sources */,
 				626F76E3242FA65A006610C8 /* CategoriesResponse.swift in Sources */,
 				626F76FD242FB834006610C8 /* UserResponse.swift in Sources */,

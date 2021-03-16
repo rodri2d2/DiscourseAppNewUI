@@ -15,8 +15,8 @@ class TopicsViewController: UIViewController {
         let table = UITableView(frame: .zero, style: .grouped)
         table.translatesAutoresizingMaskIntoConstraints = false
         table.dataSource = self
-        table.delegate = self
-        table.register(UINib(nibName: "TopicCell", bundle: nil), forCellReuseIdentifier: "TopicCell")
+        table.delegate   = self
+        table.register(TopicCell.self, forCellReuseIdentifier: TopicCell.description())
         table.estimatedRowHeight = 100
         table.rowHeight = UITableView.automaticDimension
         return table
@@ -75,7 +75,7 @@ extension TopicsViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "TopicCell", for: indexPath) as? TopicCell,
+        if let cell = tableView.dequeueReusableCell(withIdentifier: TopicCell.description(), for: indexPath) as? TopicCell,
             let cellViewModel = viewModel.viewModel(at: indexPath) {
             cell.viewModel = cellViewModel
             return cell
@@ -86,9 +86,14 @@ extension TopicsViewController: UITableViewDataSource {
 }
 
 extension TopicsViewController: UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         viewModel.didSelectRow(at: indexPath)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return CGFloat(96)
     }
 }
 
