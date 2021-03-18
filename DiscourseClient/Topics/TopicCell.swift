@@ -14,11 +14,22 @@ class TopicCell: UITableViewCell {
     var viewModel: TopicCellViewModel? {
         didSet {
             guard let viewModel = viewModel else { return }
-            topicLabel.text = viewModel.textLabelText
-            if let image = UIImage(named: "avatar"){
-                self.topicImage.image = UIImage(named: "avatar")
-                self.topicImage.layer.cornerRadius = image.size.height / 2
+            UIView.animate(withDuration: 3) {
+                self.topicLabel.alpha = 1
+                self.topicImage.alpha = 1
             }
+            topicLabel.text = viewModel.textLabelText
+            
+            
+            if let posts = viewModel.posts,
+               let users = viewModel.postUserCount,
+               let date = viewModel.createdAt {
+                topicCommentsView.updateViewItems(numberOfPosts: posts, usersByPost: users, createdAt: date)
+            }
+            
+            self.topicImage.image = (viewModel.image != nil) ? UIImage(data: viewModel.image!) : UIImage(named: "avatar")
+            
+
         }
     }
     
@@ -29,6 +40,7 @@ class TopicCell: UITableViewCell {
         view.numberOfLines = 2
         view.textAlignment = .left
         view.lineBreakMode = .byWordWrapping
+        view.alpha = 0
         return view
     }()
     
@@ -36,6 +48,7 @@ class TopicCell: UITableViewCell {
         let view = UIImageView()
         view.clipsToBounds = true
         view.layer.masksToBounds = true
+        view.alpha = 0
         return view
     }()
     
@@ -87,8 +100,9 @@ class TopicCell: UITableViewCell {
             
             //Contraint from edges
             topicImage.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 16),
-            
         ])
+        
+        topicImage.layer.cornerRadius = 32
     }
     
     private func setupCommentsView(){

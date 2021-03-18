@@ -11,7 +11,7 @@ import UIKit
 class TopicCommentsView: UIView {
     
     // MARK: - Outlets
-    private var commentLabel: UILabel!
+    private var postsLabel: UILabel!
     private var usersLabel:   UILabel!
     private var dateLabel:    UILabel!
     
@@ -41,6 +41,7 @@ class TopicCommentsView: UIView {
     private var baseLabel: UILabel {
         let view = UILabel()
         view.font.withSize(12)
+        view.textColor = .discourseGray
         view.textAlignment = .center
         view.numberOfLines = 1
         return view
@@ -67,24 +68,6 @@ class TopicCommentsView: UIView {
     
     
     // MARK: - Class functionalities
-    private func getUIImageView(imageName: String, width: CGFloat, height: CGFloat) -> UIImageView {
-        let view = UIImageView(frame: CGRect(x: .zero, y: .zero, width: width, height: height))
-        view.contentMode = .scaleAspectFit
-        view.clipsToBounds = true
-        view.image = UIImage(named: imageName)
-        return view
-    }
-    
-    private func getUILabel(fontSize: CGFloat, labelText: String) -> UILabel {
-        let view = UILabel()
-        view.font.withSize(fontSize)
-        view.text = labelText
-        view.textAlignment = .center
-        view.numberOfLines = 1
-        return view
-    }
-    
-    
     private func setupOutlets(){
         setupCommentsStack()
         setupUsersStack()
@@ -104,12 +87,11 @@ class TopicCommentsView: UIView {
         let imageView = baseImageView
         imageView.image = UIImage(named: "icoSmallAnswers")
         //
-        self.commentLabel = baseLabel
-        commentLabel.text = "24"
+        self.postsLabel = baseLabel
         //
         let commentStack = childStack
         commentStack.addArrangedSubview(imageView)
-        commentStack.addArrangedSubview(commentLabel)
+        commentStack.addArrangedSubview(postsLabel)
         mainStack.addArrangedSubview(commentStack)
     }
     
@@ -119,7 +101,6 @@ class TopicCommentsView: UIView {
         imageView.image = UIImage(named: "icoViewsSmall")
         //
         self.usersLabel = baseLabel
-        usersLabel.text = "102"
         //
         let usersStack  = childStack
         usersStack.addArrangedSubview(imageView)
@@ -134,12 +115,19 @@ class TopicCommentsView: UIView {
         imageView.image = UIImage(named: "icoSmallCalendar")
         //
         self.dateLabel = baseLabel
-        dateLabel.text = "Jul 23"
         //
         let createdDateStack = childStack
         createdDateStack.addArrangedSubview(imageView)
         createdDateStack.addArrangedSubview(dateLabel)
         mainStack.addArrangedSubview(createdDateStack)
+    }
+    
+    func updateViewItems(numberOfPosts: String, usersByPost: String, createdAt: String){
+        
+        self.postsLabel.text = numberOfPosts
+        self.usersLabel.text = usersByPost
+        self.dateLabel.text  = createdAt
+        
     }
     
 }

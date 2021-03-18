@@ -34,7 +34,7 @@ class UsersViewController: UIViewController {
     
     override func loadView() {
         view = UIView()
-        view.backgroundColor = UIColor.discourseWhite
+        view.backgroundColor = .discourseWhite
         view.addSubview(collectionView)
         collectionView.pinWintSafety(to: view)
     }

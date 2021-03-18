@@ -26,55 +26,60 @@ class TopicsViewModel {
     weak var viewDelegate: TopicsViewDelegate?
     let topicsDataManager: TopicsDataManager
     var topicViewModels: [TopicCellViewModel] = []
-
+    
     init(topicsDataManager: TopicsDataManager) {
         self.topicsDataManager = topicsDataManager
     }
-
+    
     fileprivate func fetchTopicsAndReloadUI() {
         topicsDataManager.fetchAllTopics { [weak self] (result) in
+            guard let self = self else { return }
+            
             switch result {
             case .success(let response):
                 guard let response = response else { return }
-
-                self?.topicViewModels = response.topicList.topics.map({ TopicCellViewModel(topic: $0) })
-                self?.viewDelegate?.topicsFetched()
+                
+                self.topicViewModels = response.topicList.topics.map({ (topic) in
+                    return TopicCellViewModel(topic: topic, users: response.users, dataManager: self.topicsDataManager)
+                })
+    
+                self.viewDelegate?.topicsFetched()
             case .failure:
-                self?.viewDelegate?.errorFetchingTopics()
+                self.viewDelegate?.errorFetchingTopics()
             }
         }
     }
-
+    
     func viewWasLoaded() {
         fetchTopicsAndReloadUI()
     }
-
+    
     func numberOfSections() -> Int {
         return 1
     }
-
+    
     func numberOfRows(in section: Int) -> Int {
         return topicViewModels.count
     }
-
+    
     func viewModel(at indexPath: IndexPath) -> TopicCellViewModel? {
         guard indexPath.row < topicViewModels.count else { return nil }
         return topicViewModels[indexPath.row]
     }
-
+    
     func didSelectRow(at indexPath: IndexPath) {
         guard indexPath.row < topicViewModels.count else { return }
         coordinatorDelegate?.didSelect(topic: topicViewModels[indexPath.row].topic)
     }
-
+    
     func plusButtonTapped() {
         coordinatorDelegate?.topicsPlusButtonTapped()
     }
-
+    
     func newTopicWasCreated() {
         fetchTopicsAndReloadUI()
     }
-
+    
     func topicWasDeleted() {
         fetchTopicsAndReloadUI()
     }
