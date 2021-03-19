@@ -35,14 +35,16 @@ The main goal is to modify DiscourseApp user interface based on a new desing cre
 >Although a Discourse client app was created before, for this exercise I will use the model provided by KeepCoding's teacher.
 
 
+<<<<<<< HEAD
 # Samples - Initial Version vs Final Version
+=======
+# Samples
+>>>>>>> FIX_readmeFile
 
 
-<p float="left">
-  <img src="https://github.com/rodri2d2/DiscourseAppNewUI/blob/develop/gifs/initialVersion.gif" width="200" />
-  <img src="https://github.com/rodri2d2/DiscourseAppNewUI/blob/release/v1.0/gifs/finalVersion.gif" width="200" />
-</p>
-
+| Initial Version | Final Version |
+| --- | --- |
+| <img src="https://github.com/rodri2d2/DiscourseAppNewUI/blob/develop/gifs/initialVersion.gif" width="200" /> |  <img src="https://github.com/rodri2d2/DiscourseAppNewUI/blob/release/v1.0/gifs/finalVersion.gif" width="200" /> |
 
 >Este es un proyecto de puesta en practica del BootCamp Full Stack Mobile de KeepCoding.
 >No representa ningun beneficio comercial.
