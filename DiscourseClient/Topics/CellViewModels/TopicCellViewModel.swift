@@ -35,7 +35,7 @@ class TopicCellViewModel: CellViewModel{
         self.createdAt = formatDate(date: topic.createdAt)
         
         
-        dataManager.fetchUserImage(userURLTemplate: avatarURL) { (data) in
+        dataManager.fetchUserImage(userURLTemplate: avatarURL, size: "64") { (data) in
             self.image = data
             self.cellViewModelDelegate?.didFetchImage()
         }

@@ -10,6 +10,8 @@ import Foundation
 
 /// Implementación por defecto del protocolo remoto, en este caso usando SessionAPI
 class DiscourseClientRemoteDataManagerImpl: DiscourseClientRemoteDataManager {
+
+    
     
     let session: SessionAPI
     
@@ -26,11 +28,10 @@ class DiscourseClientRemoteDataManagerImpl: DiscourseClientRemoteDataManager {
     }
     
     
-    func fetchUserImage(userURLTemplate: String, completion: @escaping (Data) -> ()) {
-        
+    func fetchUserImage(userURLTemplate: String, size: String, completion: @escaping (Data) -> ()) {
         DispatchQueue.global(qos: .default).async {
             var imageStringURL = "https://mdiscourse.keepcoding.io"
-            imageStringURL.append(userURLTemplate.replacingOccurrences(of: "{size}", with: "64"))
+            imageStringURL.append(userURLTemplate.replacingOccurrences(of: "{size}", with: size))
             if let url = URL(string: imageStringURL),
                let data = try? Data(contentsOf: url) {
                 DispatchQueue.main.async {
@@ -39,6 +40,7 @@ class DiscourseClientRemoteDataManagerImpl: DiscourseClientRemoteDataManager {
             }
         }
     }
+
     
 
     

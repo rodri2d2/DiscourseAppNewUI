@@ -23,7 +23,7 @@ class UserCellViewModel {
 
         textLabelText = user.name ?? "¡Sin Nombre!"
 
-        dataManager.fetchUserImage(userURLTemplate: user.avatarTemplate) { (data) in
+        dataManager.fetchUserImage(userURLTemplate: user.avatarTemplate, size: "80") { (data) in
             DispatchQueue.main.async {
                 self.userImage = UIImage(data: data)
                 self.viewDelegate?.userImageFetched()

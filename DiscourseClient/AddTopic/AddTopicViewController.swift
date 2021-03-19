@@ -41,25 +41,12 @@ class AddTopicViewController: UIViewController {
             textField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16)
         ])
 
-        let submitButton = UIButton(type: .system)
-        submitButton.translatesAutoresizingMaskIntoConstraints = false
-        submitButton.setTitle(NSLocalizedString("Submit", comment: ""), for: .normal)
-        submitButton.backgroundColor = .cyan
-        submitButton.setTitleColor(.white, for: .normal)
-        submitButton.addTarget(self, action: #selector(submitButtonTapped), for: .touchUpInside)
 
-        view.addSubview(submitButton)
-        NSLayoutConstraint.activate([
-            submitButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
-            submitButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
-            submitButton.topAnchor.constraint(equalTo: textField.bottomAnchor, constant: 8)
-        ])
+        setupNavigationBarButtons()
 
-        let rightBarButtonItem: UIBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "multiply"), style: .plain, target: self, action: #selector(cancelButtonTapped))
-        rightBarButtonItem.tintColor = .black
-        navigationItem.rightBarButtonItem = rightBarButtonItem
     }
 
+    // MARK: - Actions
     @objc fileprivate func cancelButtonTapped() {
         viewModel.cancelButtonTapped()
     }
@@ -69,10 +56,29 @@ class AddTopicViewController: UIViewController {
         viewModel.submitButtonTapped(title: text)
     }
 
+    // MARK: - Class functionalities
     fileprivate func showErrorAddingTopicAlert() {
         let message = NSLocalizedString("Error adding topic\nPlease try again later", comment: "")
         showAlert(message)
     }
+    
+    private func setupNavigationBarButtons(){
+        setupLeftButton()
+        setupRightButton()
+    }
+    
+    private func setupLeftButton(){
+        let leftBarButton: UIBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelButtonTapped))
+        leftBarButton.tintColor = .pumpkin
+        navigationItem.leftBarButtonItem = leftBarButton
+    }
+    
+    private func setupRightButton(){
+        let rightBarButton: UIBarButtonItem = UIBarButtonItem(title: "Publish", style: .plain, target: self, action: #selector(submitButtonTapped))
+        rightBarButton.tintColor = .pumpkin
+        navigationItem.rightBarButtonItem = rightBarButton
+    }
+    
 }
 
 extension AddTopicViewController: AddTopicViewDelegate {

@@ -40,7 +40,7 @@ class TopicCommentsView: UIView {
     
     private var baseLabel: UILabel {
         let view = UILabel()
-        view.font.withSize(12)
+        view.font = .cellDetailComponent
         view.textColor = .discourseGray
         view.textAlignment = .center
         view.numberOfLines = 1
@@ -85,7 +85,7 @@ class TopicCommentsView: UIView {
     private func setupCommentsStack(){
         //
         let imageView = baseImageView
-        imageView.image = UIImage(named: "icoSmallAnswers")
+        imageView.image = UIImage.icon(icon: .answers)
         //
         self.postsLabel = baseLabel
         //
@@ -98,7 +98,7 @@ class TopicCommentsView: UIView {
     private func setupUsersStack(){
         //
         let imageView   = baseImageView
-        imageView.image = UIImage(named: "icoViewsSmall")
+        imageView.image = UIImage.icon(icon: .views)
         //
         self.usersLabel = baseLabel
         //
@@ -112,7 +112,7 @@ class TopicCommentsView: UIView {
     private func setupDateStack(){
         //
         let imageView = baseImageView
-        imageView.image = UIImage(named: "icoSmallCalendar")
+        imageView.image = UIImage.icon(icon: .calendar)
         //
         self.dateLabel = baseLabel
         //

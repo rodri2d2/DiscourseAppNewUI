@@ -59,11 +59,11 @@ class AppCoordinator: Coordinator {
         
         
     
-        tabBarController.tabBar.items?.first?.image = UIImage(named: "inicio")
-        tabBarController.tabBar.items?.first?.selectedImage = UIImage(named: "inicioSelected")
+        tabBarController.tabBar.items?.first?.image = UIImage.icon(icon: .inicio)
+        tabBarController.tabBar.items?.first?.selectedImage = UIImage.icon(icon: .inicioSelc)
         
-        tabBarController.tabBar.items?[1].image = UIImage(named: "users")
-        tabBarController.tabBar.items?[1].selectedImage = UIImage(named: "usersSelected")
+        tabBarController.tabBar.items?[1].image = UIImage.icon(icon: .users)
+        tabBarController.tabBar.items?[1].selectedImage = UIImage.icon(icon: .userSelc)
         
         window.rootViewController = tabBarController
         window.makeKeyAndVisible()

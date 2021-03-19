@@ -24,7 +24,7 @@ class WelcomeCell: UITableViewCell {
     
     lazy var titleLabel: UILabel = {
         let view = UILabel()
-        view.font = UIFont.boldSystemFont(ofSize: 22)
+        view.font = .specialCellTitle
         view.numberOfLines = 1
         view.textAlignment = .left
         view.lineBreakMode = .byWordWrapping
@@ -33,7 +33,7 @@ class WelcomeCell: UITableViewCell {
     
     lazy var bodyLabel: UILabel = {
         let view = UILabel()
-        view.font = UIFont.systemFont(ofSize: 17)
+        view.font = .specialCellBody
         view.numberOfLines = 0
         view.textAlignment = .left
         view.lineBreakMode = .byWordWrapping
