@@ -14,10 +14,7 @@ class TopicCell: UITableViewCell {
     var viewModel: TopicCellViewModel? {
         didSet {
             guard let viewModel = viewModel else { return }
-            UIView.animate(withDuration: 3) {
-                self.topicLabel.alpha = 1
-                self.topicImage.alpha = 1
-            }
+            self.viewModel?.cellViewModelDelegate = self
             topicLabel.text = viewModel.textLabelText
             
             
@@ -28,8 +25,6 @@ class TopicCell: UITableViewCell {
             }
             
             self.topicImage.image = (viewModel.image != nil) ? UIImage(data: viewModel.image!) : UIImage(named: "avatar")
-            
-
         }
     }
     
@@ -54,6 +49,7 @@ class TopicCell: UITableViewCell {
     
     lazy var topicCommentsView: TopicCommentsView = {
         let view = TopicCommentsView()
+        view.alpha = 0
         return view
     }()
     
@@ -113,5 +109,20 @@ class TopicCell: UITableViewCell {
             topicCommentsView.topAnchor.constraint    (equalTo: self.contentView.topAnchor,     constant: 65),
             topicCommentsView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 91),
         ])
+    }
+}
+
+extension TopicCell: TopicCellViewModelViewDelegate{
+    func didFetchImage() {
+        UIView.animate(withDuration: 3) {
+            self.topicLabel.alpha = 1
+            self.topicImage.alpha = 1
+            self.topicCommentsView.alpha = 1
+        }
+        
+        if let image = viewModel?.image{
+            topicImage.image = UIImage(data: image)
+        }
+        setNeedsLayout()
     }
 }

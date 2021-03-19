@@ -25,7 +25,7 @@ class TopicsViewModel {
     weak var coordinatorDelegate: TopicsCoordinatorDelegate?
     weak var viewDelegate: TopicsViewDelegate?
     let topicsDataManager: TopicsDataManager
-    var topicViewModels: [TopicCellViewModel] = []
+    var topicViewModels: [CellViewModel] = []
     
     init(topicsDataManager: TopicsDataManager) {
         self.topicsDataManager = topicsDataManager
@@ -39,10 +39,22 @@ class TopicsViewModel {
             case .success(let response):
                 guard let response = response else { return }
                 
+                
+                let users = response.users
                 self.topicViewModels = response.topicList.topics.map({ (topic) in
-                    return TopicCellViewModel(topic: topic, users: response.users, dataManager: self.topicsDataManager)
+                    
+                    let user = users.filter { (user) -> Bool in
+                        user.username.localizedCaseInsensitiveContains(topic.lastPosterUsername)
+                    }
+                    
+                    //Welcome topic will always be the first
+                    if (topic.pinned) && (topic.id == 7){
+                        return WelcomeCellViewModel(cellType: .welcome, topic: topic)
+                    }
+                    
+                    return TopicCellViewModel(cellType: .normal, topic: topic, avatarURL: user.first?.avatarTemplate ?? "", dataManager: self.topicsDataManager)
                 })
-    
+                
                 self.viewDelegate?.topicsFetched()
             case .failure:
                 self.viewDelegate?.errorFetchingTopics()
@@ -62,14 +74,22 @@ class TopicsViewModel {
         return topicViewModels.count
     }
     
-    func viewModel(at indexPath: IndexPath) -> TopicCellViewModel? {
+    func viewModel(at indexPath: IndexPath) -> CellViewModel? {
         guard indexPath.row < topicViewModels.count else { return nil }
-        return topicViewModels[indexPath.row]
+        
+        if topicViewModels[indexPath.row].type == .normal {
+            return topicViewModels[indexPath.row] as! TopicCellViewModel
+        }else{
+            return topicViewModels[indexPath.row] as! WelcomeCellViewModel
+        }
+        
+       
     }
     
     func didSelectRow(at indexPath: IndexPath) {
         guard indexPath.row < topicViewModels.count else { return }
-        coordinatorDelegate?.didSelect(topic: topicViewModels[indexPath.row].topic)
+        let topicViewModel = topicViewModels[indexPath.row] as! TopicCellViewModel
+        coordinatorDelegate?.didSelect(topic: topicViewModel.topic)
     }
     
     func plusButtonTapped() {

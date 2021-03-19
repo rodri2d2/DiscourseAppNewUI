@@ -20,7 +20,8 @@ class TopicsViewController: UIViewController {
         let table = UITableView(frame: .zero, style: .grouped)
         table.dataSource = self
         table.delegate   = self
-        table.register(TopicCell.self, forCellReuseIdentifier: TopicCell.description())
+        table.register(TopicCell.self,   forCellReuseIdentifier: TopicCell.description())
+        table.register(WelcomeCell.self, forCellReuseIdentifier: WelcomeCell.description())
         return table
     }()
     
@@ -32,7 +33,7 @@ class TopicsViewController: UIViewController {
     }()
     
     lazy var refreshControl: UIRefreshControl = {
-        let view = UIRefreshControl()
+        let view              = UIRefreshControl()
         view.attributedTitle  = NSAttributedString(string: "Pull to refresh")
         view.addTarget(self, action: #selector(didPullRefresh), for: .valueChanged)
         return view
@@ -64,7 +65,7 @@ class TopicsViewController: UIViewController {
         setupOutlets()
     }
 
-
+    
 
     // MARK: - Actions
     @objc func plusButtonTapped() {
@@ -72,10 +73,11 @@ class TopicsViewController: UIViewController {
     }
     
     @objc func didPullRefresh(){
-        DispatchQueue.main.async {
+        DispatchQueue.global().async {
             self.viewModel.viewWasLoaded()
-            self.refreshControl.endRefreshing()
-           
+            DispatchQueue.main.async {
+                self.refreshControl.endRefreshing()
+            }
         }
     }
 
@@ -140,33 +142,55 @@ extension TopicsViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: TopicCell.description(), for: indexPath) as? TopicCell,
-            let cellViewModel = viewModel.viewModel(at: indexPath) {
-            cellViewModel.cellViewModelDelegate = self
-            cell.viewModel = cellViewModel
-            return cell
+        
+        if let cellViewModel = viewModel.viewModel(at: indexPath){
+            
+            switch cellViewModel.type{
+            
+            case .normal:
+                if let cell = tableView.dequeueReusableCell(withIdentifier: TopicCell.description(), for: indexPath) as? TopicCell {
+                        cell.viewModel = cellViewModel as? TopicCellViewModel
+                        return cell
+                    }
+                
+            case .welcome:
+                if let cell = tableView.dequeueReusableCell(withIdentifier: WelcomeCell.description(), for: indexPath) as? WelcomeCell {
+                    cell.viewModel = cellViewModel as? WelcomeCellViewModel
+                      return cell
+                  }
+            }
+            
         }
-
+        
         fatalError()
     }
 }
 
 
-extension TopicsViewController: TopicCellViewModelDelegate{
-    func didFetchImage() {
-        tableView.reloadData()
-    }
-}
+
 
 extension TopicsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
         viewModel.didSelectRow(at: indexPath)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return CGFloat(96)
+     
+        if let cellViewModel = viewModel.viewModel(at: indexPath){
+            
+            switch cellViewModel.type{
+            case .normal:
+                return CGFloat(96)
+            case .welcome:
+                return CGFloat(150)
+            }
+            
+        }
+        
+        fatalError()
     }
 }
 

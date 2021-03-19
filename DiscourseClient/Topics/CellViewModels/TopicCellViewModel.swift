@@ -8,16 +8,16 @@
 
 import Foundation
 
-protocol TopicCellViewModelDelegate {
+protocol TopicCellViewModelViewDelegate {
     func didFetchImage()
 }
 
 
 /// ViewModel que representa un topic en la lista
-class TopicCellViewModel
-{
+class TopicCellViewModel: CellViewModel{
     
-    var cellViewModelDelegate: TopicCellViewModelDelegate?
+    var type: CellType
+    var cellViewModelDelegate: TopicCellViewModelViewDelegate?
     
     let topic: Topic
     var textLabelText: String?
@@ -26,23 +26,19 @@ class TopicCellViewModel
     var createdAt:     String?
     var image:         Data?
     
-    init(topic: Topic, users: [User], dataManager: TopicsDataManager) {
-        self.topic    = topic
-        textLabelText = topic.title
-        posts         = topic.postsCount.description
-        postUserCount = topic.posters.count.description
+    init(cellType: CellType, topic: Topic, avatarURL: String, dataManager: TopicsDataManager) {
+        self.topic     = topic
+        textLabelText  = topic.title
+        posts          = topic.postsCount.description
+        postUserCount  = topic.posters.count.description
+        self.type      = cellType
         self.createdAt = formatDate(date: topic.createdAt)
-
         
-        users.forEach { (user) in
-            if topic.lastPosterUsername == user.username {
-                dataManager.fetchUserImage(userURLTemplate: user.avatarTemplate) { (data) in
-                        self.image = data
-                        self.cellViewModelDelegate?.didFetchImage()
-                }
-            }
+        
+        dataManager.fetchUserImage(userURLTemplate: avatarURL) { (data) in
+            self.image = data
+            self.cellViewModelDelegate?.didFetchImage()
         }
-        
     }
     
     
@@ -65,7 +61,7 @@ class TopicCellViewModel
         formatter.locale = Locale(identifier: "es_ES")
         let stringDate = formatter.string(from: formattedDate)
         return stringDate.capitalized(with: formatter.locale)
-
+        
     }
     
     

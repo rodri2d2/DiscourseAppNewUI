@@ -11,7 +11,7 @@ import UIKit
 class TopicCommentsView: UIView {
     
     // MARK: - Outlets
-    private var postsLabel: UILabel!
+    private var postsLabel:   UILabel!
     private var usersLabel:   UILabel!
     private var dateLabel:    UILabel!
     
@@ -123,11 +123,9 @@ class TopicCommentsView: UIView {
     }
     
     func updateViewItems(numberOfPosts: String, usersByPost: String, createdAt: String){
-        
         self.postsLabel.text = numberOfPosts
         self.usersLabel.text = usersByPost
         self.dateLabel.text  = createdAt
-        
     }
     
 }

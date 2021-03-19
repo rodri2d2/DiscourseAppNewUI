@@ -15,13 +15,15 @@ class UsersCollectionCell: UICollectionViewCell {
         didSet {
             guard let viewModel = viewModel else { return }
             viewModel.viewDelegate = self
+            nameLabel.text  = viewModel.textLabelText
+            imageView.image = viewModel.userImage
+            
             UIView.animate(withDuration: 2) {
                 self.imageView.alpha = 1
                 self.nameLabel.alpha = 1
-                
+
             }
-            nameLabel.text  = viewModel.textLabelText
-            imageView.image = viewModel.userImage
+            
         }
     }
     
@@ -106,7 +108,6 @@ class UsersCollectionCell: UICollectionViewCell {
 
 extension UsersCollectionCell: UserCellViewModelViewDelegate {
     func userImageFetched() {
-        
 
         self.imageView.image = self.viewModel?.userImage
         setNeedsLayout()

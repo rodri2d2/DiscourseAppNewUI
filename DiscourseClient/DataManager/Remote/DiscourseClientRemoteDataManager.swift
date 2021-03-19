@@ -10,6 +10,7 @@ import Foundation
 
 /// Protocolo que contiene todas las llamadas remotas de la app
 protocol DiscourseClientRemoteDataManager {
+    
     func fetchAllTopics(completion: @escaping (Result<LatestTopicsResponse?, Error>) -> ())
     func fetchUserImage(userURLTemplate: String, completion: @escaping (Data) -> ())
     func fetchTopic(id: Int, completion: @escaping (Result<SingleTopicResponse?, Error>) -> ())

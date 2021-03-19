@@ -38,7 +38,6 @@ class DiscourseClientRemoteDataManagerImpl: DiscourseClientRemoteDataManager {
                 }
             }
         }
-
     }
     
 

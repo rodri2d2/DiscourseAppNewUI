@@ -22,13 +22,14 @@ class DiscourseClientDataManager {
 }
 
 extension DiscourseClientDataManager: TopicsDataManager {
-    
-    func fetchUserImage(userURLTemplate userName: String, completion: @escaping (Data) -> ()) {
-        remoteDataManager.fetchUserImage(userURLTemplate: userName, completion: completion)
-    }
-    
     func fetchAllTopics(completion: @escaping (Result<LatestTopicsResponse?, Error>) -> ()) {
         remoteDataManager.fetchAllTopics(completion: completion)
+    }
+}
+
+extension DiscourseClientDataManager: UserImageService {
+    func fetchUserImage(userURLTemplate userName: String, completion: @escaping (Data) -> ()) {
+        remoteDataManager.fetchUserImage(userURLTemplate: userName, completion: completion)
     }
 }
 
