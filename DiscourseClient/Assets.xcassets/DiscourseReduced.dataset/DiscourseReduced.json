@@ -1,0 +1,100 @@
+{
+    "users": [
+        {
+            "id": -1,
+            "username": "system",
+            "name": "system",
+            "avatar_template": "/user_avatar/mdiscourse.keepcoding.io/system/{size}/1_2.png"
+        },
+        {
+            "id": 13,
+            "username": "dbenitez_bcn",
+            "name": "David Benitez",
+            "avatar_template": "/letter_avatar_proxy/v4/letter/d/2bfe46/{size}.png"
+        },
+        {
+            "id": 9,
+            "username": "pere",
+            "name": "Pere Ferrer",
+            "avatar_template": "/letter_avatar_proxy/v4/letter/p/7ba0ec/{size}.png"
+        },
+        {
+            "id": 15,
+            "username": "esevilla",
+            "name": "Estefania Sevilla ",
+            "avatar_template": "/letter_avatar_proxy/v4/letter/e/a87d85/{size}.png"
+        }
+    ],
+    "primary_groups": [],
+    "topic_list": {
+        "can_create_topic": true,
+        "more_topics_url": "/latest?no_definitions=true&page=1",
+        "draft": null,
+        "draft_key": "new_topic",
+        "draft_sequence": 0,
+        "per_page": 30,
+        "topics": [
+            {
+                "id": 7,
+                "title": "Welcome to Discourse",
+                "fancy_title": "Welcome to Discourse",
+                "slug": "welcome-to-discourse",
+                "posts_count": 8,
+                "reply_count": 0,
+                "highest_post_number": 8,
+                "image_url": "//mdiscourse.keepcoding.io/uploads/default/original/1X/1b44248c86c19414b907bf3b799ee95ae1681e68.gif",
+                "created_at": "2019-07-03T18:15:03.967Z",
+                "last_posted_at": "2020-01-19T19:28:16.151Z",
+                "bumped": true,
+                "bumped_at": "2020-01-19T19:28:16.151Z",
+                "unseen": false,
+                "last_read_post_number": 3,
+                "unread": 0,
+                "new_posts": 0,
+                "pinned": true,
+                "unpinned": null,
+                "excerpt": "Discourse Setup \nThe first paragraph of this pinned topic will be visible as a welcome message to all new visitors on your homepage. It’s important! \nEdit this into a brief description of your community: \n\nWho is it for?\n&hellip;",
+                "visible": true,
+                "closed": false,
+                "archived": false,
+                "notification_level": 1,
+                "bookmarked": false,
+                "liked": false,
+                "views": 114,
+                "like_count": 0,
+                "has_summary": false,
+                "archetype": "regular",
+                "last_poster_username": "esevilla",
+                "category_id": 1,
+                "pinned_globally": true,
+                "featured_link": null,
+                "posters": [
+                    {
+                        "extras": null,
+                        "description": "Original Poster",
+                        "user_id": -1,
+                        "primary_group_id": null
+                    },
+                    {
+                        "extras": null,
+                        "description": "Frequent Poster",
+                        "user_id": 13,
+                        "primary_group_id": null
+                    },
+                    {
+                        "extras": null,
+                        "description": "Frequent Poster",
+                        "user_id": 9,
+                        "primary_group_id": null
+                    },
+                    {
+                        "extras": "latest",
+                        "description": "Most Recent Poster",
+                        "user_id": 15,
+                        "primary_group_id": null
+                    }
+                ]
+            }
+        ]
+    }
+}

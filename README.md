@@ -1,6 +1,8 @@
-# DiscourseAppNewUI
 
-## KeepCoding -  Práctica de Interfaces de usuario / User interfaces Exersises
+# KeepCoding -  Práctica de Interfaces de usuario / User interface design practical exercise
+![Swift Version](https://img.shields.io/badge/Swift-5.3-F16D39.svg?style=flat)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 
 ## Objetivos principales
 
@@ -27,12 +29,19 @@ The main goal is to modify DiscourseApp user interface based on a new desing cre
 
 <br />
 
+### A proposito del proyecto inicail / About intial project
+>A pesar de haber creado una app cliente de Discourse anteriormente,para esta practica se utilizá el modelo creado previamente por el profesor de KeepCoding que imparte esta asignatura.
+>
+>Although a Discourse client app was created before, for this exercise I will use the model provided by KeepCoding's teacher.
 
 
+# Samples - Initial Version x Final Version
 
-# Samples
 
-
+<p float="left">
+  <img src="https://github.com/rodri2d2/DiscourseAppNewUI/blob/develop/gifs/initialVersion.gif" width="200" />
+  <img src="https://github.com/rodri2d2/DiscourseAppNewUI/blob/release/v1.0/gifs/finalVersion.gif" width="200" />
+</p>
 
 
 >Este es un proyecto de puesta en practica del BootCamp Full Stack Mobile de KeepCoding.
