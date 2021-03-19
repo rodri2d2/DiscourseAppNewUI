@@ -35,12 +35,7 @@ The main goal is to modify DiscourseApp user interface based on a new desing cre
 >Although a Discourse client app was created before, for this exercise I will use the model provided by KeepCoding's teacher.
 
 
-<<<<<<< HEAD
-# Samples - Initial Version vs Final Version
-=======
 # Samples
->>>>>>> FIX_readmeFile
-
 
 | Initial Version | Final Version |
 | --- | --- |
