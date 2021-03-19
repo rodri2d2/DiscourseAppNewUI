@@ -12,7 +12,7 @@ import Foundation
 protocol DiscourseClientRemoteDataManager {
     
     func fetchAllTopics(completion: @escaping (Result<LatestTopicsResponse?, Error>) -> ())
-    func fetchUserImage(userURLTemplate: String, completion: @escaping (Data) -> ())
+    func fetchUserImage(userURLTemplate: String, size: String, completion: @escaping (Data) -> ())
     func fetchTopic(id: Int, completion: @escaping (Result<SingleTopicResponse?, Error>) -> ())
     func addTopic(title: String, raw: String, createdAt: String, completion: @escaping (Result<AddNewTopicResponse?, Error>) -> ())
     func deleteTopic(id: Int, completion: @escaping (Result<DeleteTopicResponse?, Error>) -> ())

@@ -31,7 +31,7 @@ class TopicCell: UITableViewCell {
     // MARK: - Outlets
     lazy var topicLabel: UILabel = {
         let view = UILabel()
-        view.font = UIFont.boldSystemFont(ofSize: 17)
+        view.font = .normalCellTitle
         view.numberOfLines = 2
         view.textAlignment = .left
         view.lineBreakMode = .byWordWrapping

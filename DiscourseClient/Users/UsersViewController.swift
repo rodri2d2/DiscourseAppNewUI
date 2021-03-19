@@ -22,7 +22,14 @@ class UsersViewController: UIViewController {
         
     }()
     
+    lazy var refreshControl: UIRefreshControl = {
+        let view              = UIRefreshControl()
+        view.attributedTitle  = NSAttributedString(string: "Pull to refresh")
+        view.addTarget(self, action: #selector(didPullRefresh), for: .valueChanged)
+        return view
+    }()
     
+    // MARK: - Lifecycle
     init(viewModel: UsersViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -43,8 +50,25 @@ class UsersViewController: UIViewController {
         super.viewDidLoad()
         viewModel.viewWasLoaded()
         setupNavigationBar()
+        setupRefreshControl()
     }
     
+    // MARK: - Actions
+    @objc func didPullRefresh(){
+        self.collectionView.alpha = 0
+        DispatchQueue.global().async {
+            self.viewModel.viewWasLoaded()
+            DispatchQueue.main.async {
+                self.refreshControl.endRefreshing()
+                UIView.animate(withDuration: 2) {
+                    self.collectionView.alpha = 1
+                }
+                
+            }
+        }
+    }
+    
+    // MARK: - Class functionalities
     fileprivate func showErrorFetchingUsers() {
         showAlert("Error fetching users\nPlease try again later")
     }
@@ -60,6 +84,19 @@ class UsersViewController: UIViewController {
         self.navigationController?.navigationBar.layer.shadowOffset  = CGSize(width: 0, height: 2)
         self.navigationController?.navigationBar.layer.shadowOpacity = 0.3
         self.navigationController?.navigationBar.layer.shadowColor   = UIColor.discourseGray.cgColor
+        //
+        setupRightButton()
+    }
+    
+    private func setupRightButton(){
+        let rightBarButton = systemBarButtonWith(this: "magnifyingglass")
+        rightBarButton.tintColor = .pumpkin
+        navigationItem.rightBarButtonItem = rightBarButton
+    }
+    
+    private func setupRefreshControl(){
+        self.collectionView.refreshControl = self.refreshControl
+        
     }
     
 }

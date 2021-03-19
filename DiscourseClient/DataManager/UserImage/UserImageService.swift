@@ -9,5 +9,5 @@
 import Foundation
 
 protocol UserImageService {
-    func fetchUserImage(userURLTemplate: String, completion: @escaping (_ imageData: Data)-> ())
+    func fetchUserImage(userURLTemplate: String, size: String, completion: @escaping (_ imageData: Data)-> ())
 }

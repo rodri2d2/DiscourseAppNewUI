@@ -14,7 +14,7 @@ import Foundation
 class DiscourseClientDataManager {
     let localDataManager: DiscourseClientLocalDataManager
     let remoteDataManager: DiscourseClientRemoteDataManager
-
+    
     init(localDataManager: DiscourseClientLocalDataManager, remoteDataManager: DiscourseClientRemoteDataManager) {
         self.localDataManager  = localDataManager
         self.remoteDataManager = remoteDataManager
@@ -28,16 +28,17 @@ extension DiscourseClientDataManager: TopicsDataManager {
 }
 
 extension DiscourseClientDataManager: UserImageService {
-    func fetchUserImage(userURLTemplate userName: String, completion: @escaping (Data) -> ()) {
-        remoteDataManager.fetchUserImage(userURLTemplate: userName, completion: completion)
+    func fetchUserImage(userURLTemplate: String, size: String, completion: @escaping (Data) -> ()) {
+        remoteDataManager.fetchUserImage(userURLTemplate: userURLTemplate, size: size, completion: completion)
     }
+
 }
 
 extension DiscourseClientDataManager: TopicDetailDataManager {
     func fetchTopic(id: Int, completion: @escaping (Result<SingleTopicResponse?, Error>) -> ()) {
         remoteDataManager.fetchTopic(id: id, completion: completion)
     }
-
+    
     func deleteTopic(id: Int, completion: @escaping (Result<DeleteTopicResponse?, Error>) -> ()) {
         remoteDataManager.deleteTopic(id: id, completion: completion)
     }
@@ -66,7 +67,7 @@ extension DiscourseClientDataManager: UserDataManager {
     func fetchUser(username: String, completion: @escaping (Result<UserResponse?, Error>) -> ()) {
         remoteDataManager.fetchUser(username: username, completion: completion)
     }
-
+    
     func updateUserName(username: String, name: String, completion: @escaping (Result<UpdateUserNameResponse?, Error>) -> ()) {
         remoteDataManager.updateUserName(username: username, name: name, completion: completion)
     }

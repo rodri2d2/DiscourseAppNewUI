@@ -22,4 +22,11 @@ extension UIViewController {
         alertController.addAction(UIAlertAction(title: alertActionTitle, style: .default, handler: nil))
         present(alertController, animated: true, completion: nil)
     }
+    
+    
+    
+    func systemBarButtonWith(this image: String) -> UIBarButtonItem {
+        let view: UIBarButtonItem = UIBarButtonItem(image: UIImage(systemName: image), style: .plain, target: nil, action: nil)
+        return view
+    }
 }

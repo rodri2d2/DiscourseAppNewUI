@@ -28,7 +28,7 @@ class TopicsViewController: UIViewController {
     lazy var fab: UIButton = {
         let view = UIButton()
         view.layer.cornerRadius = 32
-        view.setImage(UIImage(named: "icoFAB"), for: .normal)
+        view.setImage(UIImage.image(image: .fab), for: .normal)
         return view
     }()
     
@@ -73,10 +73,14 @@ class TopicsViewController: UIViewController {
     }
     
     @objc func didPullRefresh(){
+        self.tableView.alpha = 0
         DispatchQueue.global().async {
             self.viewModel.viewWasLoaded()
             DispatchQueue.main.async {
                 self.refreshControl.endRefreshing()
+                UIView.animate(withDuration: 2) {
+                    self.tableView.alpha = 1
+                }
             }
         }
     }
@@ -87,7 +91,6 @@ class TopicsViewController: UIViewController {
         showAlert(alertMessage)
     }
     
-    
     private func setupOutlets(){
         
         setupFABButton()
@@ -96,6 +99,7 @@ class TopicsViewController: UIViewController {
     }
     
     private func setupNavigationBar(){
+        
         
         self.navigationController?.navigationBar.prefersLargeTitles = true
         self.navigationController?.navigationBar.isTranslucent      = true
@@ -107,6 +111,16 @@ class TopicsViewController: UIViewController {
         self.navigationController?.navigationBar.layer.shadowOffset  = CGSize(width: 0, height: 2)
         self.navigationController?.navigationBar.layer.shadowOpacity = 0.3
         self.navigationController?.navigationBar.layer.shadowColor   = UIColor.discourseGray.cgColor
+        
+        //
+        setupRightBarButton()
+   
+    }
+    
+    private func setupRightBarButton(){
+        let rightBarButton = systemBarButtonWith(this: "magnifyingglass")
+        rightBarButton.tintColor = .pumpkin
+        navigationItem.rightBarButtonItem = rightBarButton
     }
     
     private func setupFABButton(){

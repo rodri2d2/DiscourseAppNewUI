@@ -73,7 +73,7 @@ class UserViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Update Name", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .green
+        button.backgroundColor = .pumpkin
         button.addTarget(self, action: #selector(updateNameButtonTapped), for: .touchUpInside)
         return button
     }()
@@ -117,7 +117,8 @@ class UserViewController: UIViewController {
 
     override func loadView() {
         view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = .discourseWhite
+        navigationController?.navigationBar.tintColor = .pumpkin
 
         view.addSubview(userIDStackView)
         NSLayoutConstraint.activate([
