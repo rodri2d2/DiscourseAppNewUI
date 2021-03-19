@@ -42,7 +42,7 @@ The main goal is to modify DiscourseApp user interface based on a new desing cre
   <img src="https://github.com/rodri2d2/DiscourseAppNewUI/blob/develop/gifs/initialVersion.gif" width="200" />
 </p>
 <p float="left">
-  <img src="https://github.com/rodri2d2/DiscourseAppNewUI/blob/develop/gifs/finalVersion.gif" width="200" />
+  <img src="https://github.com/rodri2d2/DiscourseAppNewUI/blob/release/v1.0/gifs/finalVersion.gif" width="200" />
 </p>
 <br />
 
