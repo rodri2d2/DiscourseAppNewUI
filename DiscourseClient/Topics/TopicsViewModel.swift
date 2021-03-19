@@ -25,56 +25,81 @@ class TopicsViewModel {
     weak var coordinatorDelegate: TopicsCoordinatorDelegate?
     weak var viewDelegate: TopicsViewDelegate?
     let topicsDataManager: TopicsDataManager
-    var topicViewModels: [TopicCellViewModel] = []
-
+    var topicViewModels: [CellViewModel] = []
+    
     init(topicsDataManager: TopicsDataManager) {
         self.topicsDataManager = topicsDataManager
     }
-
+    
     fileprivate func fetchTopicsAndReloadUI() {
         topicsDataManager.fetchAllTopics { [weak self] (result) in
+            guard let self = self else { return }
+            
             switch result {
             case .success(let response):
                 guard let response = response else { return }
-
-                self?.topicViewModels = response.topicList.topics.map({ TopicCellViewModel(topic: $0) })
-                self?.viewDelegate?.topicsFetched()
+                
+                
+                let users = response.users
+                self.topicViewModels = response.topicList.topics.map({ (topic) in
+                    
+                    let user = users.filter { (user) -> Bool in
+                        user.username.localizedCaseInsensitiveContains(topic.lastPosterUsername)
+                    }
+                    
+                    //Welcome topic will always be the first
+                    if (topic.pinned) && (topic.id == 7){
+                        return WelcomeCellViewModel(cellType: .welcome, topic: topic)
+                    }
+                    
+                    return TopicCellViewModel(cellType: .normal, topic: topic, avatarURL: user.first?.avatarTemplate ?? "", dataManager: self.topicsDataManager)
+                })
+                
+                self.viewDelegate?.topicsFetched()
             case .failure:
-                self?.viewDelegate?.errorFetchingTopics()
+                self.viewDelegate?.errorFetchingTopics()
             }
         }
     }
-
+    
     func viewWasLoaded() {
         fetchTopicsAndReloadUI()
     }
-
+    
     func numberOfSections() -> Int {
         return 1
     }
-
+    
     func numberOfRows(in section: Int) -> Int {
         return topicViewModels.count
     }
-
-    func viewModel(at indexPath: IndexPath) -> TopicCellViewModel? {
+    
+    func viewModel(at indexPath: IndexPath) -> CellViewModel? {
         guard indexPath.row < topicViewModels.count else { return nil }
-        return topicViewModels[indexPath.row]
+        
+        if topicViewModels[indexPath.row].type == .normal {
+            return topicViewModels[indexPath.row] as! TopicCellViewModel
+        }else{
+            return topicViewModels[indexPath.row] as! WelcomeCellViewModel
+        }
+        
+       
     }
-
+    
     func didSelectRow(at indexPath: IndexPath) {
         guard indexPath.row < topicViewModels.count else { return }
-        coordinatorDelegate?.didSelect(topic: topicViewModels[indexPath.row].topic)
+        let topicViewModel = topicViewModels[indexPath.row] as! TopicCellViewModel
+        coordinatorDelegate?.didSelect(topic: topicViewModel.topic)
     }
-
+    
     func plusButtonTapped() {
         coordinatorDelegate?.topicsPlusButtonTapped()
     }
-
+    
     func newTopicWasCreated() {
         fetchTopicsAndReloadUI()
     }
-
+    
     func topicWasDeleted() {
         fetchTopicsAndReloadUI()
     }

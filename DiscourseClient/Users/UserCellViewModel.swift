@@ -18,20 +18,17 @@ class UserCellViewModel {
     let textLabelText: String?
     var userImage: UIImage?
     
-    init(user: User) {
+    init(user: User, dataManager: UsersDataManager) {
         self.user = user
 
         textLabelText = user.name ?? "¡Sin Nombre!"
 
-        var imageStringURL = "https://mdiscourse.keepcoding.io"
-        imageStringURL.append(user.avatarTemplate.replacingOccurrences(of: "{size}", with: "100"))
-        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-            if let url = URL(string: imageStringURL), let data = try? Data(contentsOf: url) {
-                self?.userImage = UIImage(data: data)
-                DispatchQueue.main.async {
-                    self?.viewDelegate?.userImageFetched()
-                }
+        dataManager.fetchUserImage(userURLTemplate: user.avatarTemplate) { (data) in
+            DispatchQueue.main.async {
+                self.userImage = UIImage(data: data)
+                self.viewDelegate?.userImageFetched()
             }
         }
+        
     }
 }

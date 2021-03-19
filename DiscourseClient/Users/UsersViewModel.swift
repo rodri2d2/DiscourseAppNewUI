@@ -30,14 +30,20 @@ class UsersViewModel {
 
     func viewWasLoaded() {
         usersDataManager.fetchAllUsers { [weak self] (result) in
+            guard let self = self else { return }
+            
+            
             switch result {
             case .success(let response):
                 guard let response = response else { return }
 
-                self?.userViewModels = response.directoryItems.map({ UserCellViewModel(user: $0.user) })
-                self?.viewDelegate?.usersWereFetched()
+                self.userViewModels = response.directoryItems.map({ (user)  in
+                    return UserCellViewModel(user: user.user, dataManager: self.usersDataManager)
+                })
+                
+                self.viewDelegate?.usersWereFetched()
             case .failure:
-                self?.viewDelegate?.errorFetchingUsers()
+                self.viewDelegate?.errorFetchingUsers()
             }
         }
     }

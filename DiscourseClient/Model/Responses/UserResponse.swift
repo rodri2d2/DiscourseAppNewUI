@@ -18,6 +18,7 @@ struct UserDetail: Codable {
     let name: String
     let canEditName: Bool
 
+
     enum CodingKeys: String, CodingKey {
         case id = "id"
         case username = "username"

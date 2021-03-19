@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol UserDataManager: class {
+protocol UserDataManager: UserImageService {
     func fetchUser(username: String, completion: @escaping (Result<UserResponse?, Error>) -> ())
     func updateUserName(username: String, name: String, completion: @escaping (Result<UpdateUserNameResponse?, Error>) -> ())
 }

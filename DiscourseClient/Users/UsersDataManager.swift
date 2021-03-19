@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol UsersDataManager: class {
+protocol UsersDataManager: class, UserImageService{
     func fetchAllUsers(completion: @escaping (Result<UsersResponse?, Error>) -> ())
 }
