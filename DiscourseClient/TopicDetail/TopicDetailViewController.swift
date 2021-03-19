@@ -78,6 +78,7 @@ class TopicDetailViewController: UIViewController {
 
     let viewModel: TopicDetailViewModel
 
+    // MARK: - Lifecycle
     init(viewModel: TopicDetailViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -89,7 +90,7 @@ class TopicDetailViewController: UIViewController {
 
     override func loadView() {
         view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = .discourseWhite
 
         view.addSubview(topicIDStackView)
         NSLayoutConstraint.activate([
@@ -116,9 +117,7 @@ class TopicDetailViewController: UIViewController {
         ])
         deleteTopicButton.isHidden = true
 
-        let leftBarButtonItem: UIBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "arrow.left"), style: .plain, target: self, action: #selector(backButtonTapped))
-        leftBarButtonItem.tintColor = .black
-        navigationItem.leftBarButtonItem = leftBarButtonItem
+        setupLeftBarButton()
     }
 
     override func viewDidLoad() {
@@ -126,6 +125,8 @@ class TopicDetailViewController: UIViewController {
         viewModel.viewDidLoad()
     }
 
+    
+    // MARK: - Actions
     @objc func backButtonTapped() {
         viewModel.backButtonTapped()
     }
@@ -134,6 +135,8 @@ class TopicDetailViewController: UIViewController {
         viewModel.deleteButtonTapped()
     }
 
+    
+    // MARK: - Class functionalities
     fileprivate func showErrorFetchingTopicDetailAlert() {
         let alertMessage: String = NSLocalizedString("Error fetching topic detail\nPlease try again later", comment: "")
         showAlert(alertMessage)
@@ -149,6 +152,15 @@ class TopicDetailViewController: UIViewController {
         labelTopicTitle.text = viewModel.labelTopicNameText
         postsNumberLabel.text = viewModel.postsNumberLabelText
         deleteTopicButton.isHidden = viewModel.deleteTopicButtonIsHidden
+    }
+    
+    private func setupLeftBarButton(){
+        let leftButton = systemBarButtonWith(this: "arrow.left")
+        leftButton.target = self
+        leftButton.action = #selector(backButtonTapped)
+        leftButton.tintColor = .pumpkin
+        navigationItem.leftBarButtonItem = leftButton
+        
     }
 }
 

@@ -100,6 +100,7 @@ class TopicsViewController: UIViewController {
     
     private func setupNavigationBar(){
         
+        
         self.navigationController?.navigationBar.prefersLargeTitles = true
         self.navigationController?.navigationBar.isTranslucent      = true
         self.navigationController?.navigationBar.isOpaque           = true
