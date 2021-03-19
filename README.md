@@ -35,7 +35,7 @@ The main goal is to modify DiscourseApp user interface based on a new desing cre
 >Although a Discourse client app was created before, for this exercise I will use the model provided by KeepCoding's teacher.
 
 
-# Samples - Initial Version x Final Version
+# Samples - Initial Version vs Final Version
 
 
 <p float="left">
